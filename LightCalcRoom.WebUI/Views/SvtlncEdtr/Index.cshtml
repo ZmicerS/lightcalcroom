@@ -1,0 +1,41 @@
+﻿@model LightCalcRoom.WebUI.Models.SvtlExUI
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Добавление и редактирование светильников</h2>
+    <div>
+        <a href="/">Раcчёт</a>;
+    </div>
+    <form action="/SvtlncEdtr/ZplSvtlnc" method="post">
+        <!--input name="kdtb" type="hidden" value="-1" />-->
+
+        <div>
+            <label for="">Светильник</label>
+            <input type="text" name="Svtlnk" value="" required="required" pattern="[A-Za-zА-Яа-яЁё0-9\s\_\/]+$" placeholder="Название светильника" />
+            </div>
+        <div>
+            <label for="">Лампа </label>
+            <input type="text" name="Lampa" value="" required="required"/>
+        </div>
+            <div>
+                <label for="">Количество шт.  </label>
+                <input type="number" name="Kol" value="" required="required" pattern="[0-9]{1,2}" title="/две цифры/" />
+            </div>
+            <div>
+                <label for="">Мощность W  </label>
+                <input type="text" name="Pwr" value=""/>
+            </div>
+            <div>
+                <label for="">Световой поток лм. </label>
+                <input type="text" name="Potok" value=""/>
+            </div>
+                <div>   <input type="submit" value="Принять" /> </div>
+        @Html.DropDownList("TblKfId", (ViewBag.sllsttb as SelectList))
+    </form>
+        <div id="tbl">
+        </div>
+        @section Scripts
+    {
+            <script src="~/MyScripts/SvtlncEdtr/SvtEdIndx.js" type="text/javascript"></script>
+        }

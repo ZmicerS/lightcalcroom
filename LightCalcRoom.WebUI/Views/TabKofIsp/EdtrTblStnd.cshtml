@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Редактирование коэффициентов использования";
+    var kdtb = ViewBag.KdTb;
+    var NmTbl=ViewBag.NmTbl;
+    var klcl = ViewBag.Klcl;
+    var klrw = ViewBag.Klrw;
+    var mscl = ViewBag.Mscl;
+    var mskfisp = ViewBag.Mskfisp;
+    var msrw = ViewBag.Msrw;
+    string skdtb = String.Format("{0}", kdtb);
+    string sklrw = String.Format("{0}", klrw);
+    string sklcl = String.Format("{0}", klcl);
+}
+<h2>Редактирование коэффициентов использования</h2>
+<h2>      для таблицы    @NmTbl</h2>
+<div>
+    <a class="myLnk" href="/">Раcчёт</a>
+    <a class="myLnk" href="/SvtlncEdtr">Добавление и редактирование светильников</a>
+    <a class="myLnk" href="/TabKofIsp">Создание Таблицы коэффициентов использования</a>
+</div>
+@using(Html.BeginForm("EdtrTblStnd", "TabKofIsp",FormMethod.Post))
+{
+    @Html.Hidden("kdtb", skdtb)
+    @Html.Hidden("klrw", sklrw)
+    @Html.Hidden("klcl", sklcl)
+    <table border="1">
+        <caption>@NmTbl</caption>
+        <tr>
+            <th>потолок</th>
+            @*foreach (var cl in ViewBag.Mscl)*@
+            @for (int i = 0; i < klcl; i++)
+            {
+                <th>@mscl[0, i]</th>
+            }
+        </tr>
+        <tr>
+            <th>стены</th>
+            @*foreach (var cl in ViewBag.Mscl)*@
+            @for (int i = 0; i < klcl; i++)
+            {
+                <th>@mscl[1, i]</th>
+            }
+        </tr>
+        <tr>
+            <th>пол</th>
+            @*foreach (var cl in ViewBag.Mscl)*@
+            @for (int i = 0; i < klcl; i++)
+            {
+                <th>@mscl[2, i]</th>
+            }
+        </tr>
+        @for (int i = 0; i < mskfisp.GetLength(0); i++)
+        {
+            string strw = String.Format("{0:d2}", i);
+            <tr>
+                <td>@msrw[i]</td>
+                @for (int j = 0; j < mskfisp.GetLength(1); j++)
+                {
+                    string stcl = String.Format("{0:d2}", j);
+                    string mas = "mas" + strw + stcl;
+                    string znc = mskfisp[i, j];
+                    @*  <!--<input type="text" name="@mas" value="@mskfisp[i, j]"/>-->*@
+                    <td>@Html.TextBox(mas, znc, new { pattern = "^[0-9]{1,4}$", size = "4", style = "width: 50px;", title = "только цифры" })</td>
+                }
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Принять" />
+}
+

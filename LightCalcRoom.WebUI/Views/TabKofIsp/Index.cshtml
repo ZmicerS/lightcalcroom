@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Создание Таблицы коэффициентов использования";
+}
+
+<h2>Создание Таблицы коэффициентов использования</h2>
+<div>
+    <a class="myLnk" href="/">Раcчёт</a>
+</div>
+<div>
+    @Html.ActionLink("Добавление и редактирование светильников", "Index", "SvtlncEdtr", new { }, new { @class = "myLnk" })
+</div>
+<div>
+    @using (Html.BeginForm("EdtrTblStnd", "TabKofIsp", FormMethod.Get))
+    {
+        <p>
+        <label>Выберите таблицу</label>
+        <div>@Html.DropDownList("TblKfId", (ViewBag.sllsttb as SelectList))</div>
+        <input type="submit" value="Редактировать"/>
+            <a id="iskfot" href="/IsprStrcMtrKfIsp/IsprStrctKfOtrz/-1">Исправить коэффициенты отражения</a>
+            <a id="isipm" href="/IsprStrcMtrKfIsp/IsprStrctIndPom/-1">Исправить индексы помещения</a>
+        </p>
+    }
+</div>
+        <div class="tblkf">
+            <h3>Создание матрицы для таблицы коэффициентов</h3>
+            <form action="/TabKofIsp/AddTblKof" method="post">
+                <p>
+                    <label>Имя таблицы  коэффициентов использования</label>
+                    <input type="text" class="tblkf"  placeholder="Имя таблицы" name="TblName" /><br />
+                    <input checked="checked" id="MetaTbl" name="MetaTbl" type="radio" value="stnd" />Стандартная матрица<br />
+                    <input id="MetaTbl" name="MetaTbl" type="radio" value="nonstnd" />Не стандартная матрица<br />
+                </p>
+                <input type="submit" value="Принять" />
+            </form>
+        </div>
+@section Scripts
+{
+    <script src="~/MyScripts/TabKofIsp/TbKfIndx.js" type="text/javascript"></script>
+ }

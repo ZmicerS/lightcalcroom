@@ -1,0 +1,81 @@
+﻿@model LightCalcRoom.WebUI.Models.SvtlExUI
+    @{
+        ViewBag.Title = "Добавление и редактирование светильников";
+    }
+
+    <h2>Добавление и редактирование светильников</h2>
+    <div>
+        <a class="myLnk" href="/">Раcчёт</a>
+        <a class="myLnk" href="/TabKofIsp">Создание Таблицы коэффициентов использования</a>
+    </div>
+<div>
+    <input type="radio" id="dblsvt" name="dobizmsvt" value="dbvl" checked/>Добавление светильника
+    <input type="radio" id="izmsvt" name="dobizmsvt" value="izm" />Изменение светильника
+</div>
+<div id="dblSvtl">
+    <h2>Добавление светильников</h2>
+    <form action="/SvtlncEdtr/ZplSvtlnc" method="post">
+        <!--input name="kdtb" type="hidden" value="-1" />-->
+
+        <div>
+            <label for="">Светильник</label>
+            <input id="dbvlSvtlnk" type="text" name="Svtlnk" value="" required="required" pattern="[A-Za-zА-Яа-яЁё0-9\s\_\/]+$" placeholder="Название светильника" />
+        </div>
+        <div>
+            <label for="">Лампа </label>
+            <input id="dbvlLampa" type="text" name="Lampa" value="" required="required" />
+        </div>
+        <div>
+            <label for="">Количество шт.  </label>
+            <input id="dbvKol" type="number" name="Kol" value="" required="required" pattern="[0-9]{1,2}" title="/две цифры/" />
+        </div>
+        <div>
+            <label for="">Мощность W  </label>
+            <input id="dbvPwr" type="text" name="Pwr" value="" />
+        </div>
+        <div>
+            <label for="">Световой поток лм. </label>
+            <input id="dbvPotok" type="text" name="Potok" value="" />
+        </div>
+        <div>   <input id="sbmsvtl" type="submit" disabled="disabled" value="Принять" /> </div>
+        <div>
+            @Html.ValidationMessage("TblKfId")
+            @Html.DropDownList("TblKfId", (ViewBag.sllsttb as SelectList))
+        </div>
+
+    </form>
+    <div id="tbl">
+    </div>
+</div>
+<div id="izmSvtl">
+    <h2>Редактирование светильников</h2>
+    <form action="/SvtlncEdtr/IzmSvtlnc" method="post">
+        <input name="IdLmp" type="hidden" value="-1" />
+        @Html.DropDownList("SvtlId", (ViewBag.slctsvtl as SelectList))
+        <div>
+            <label for="">Светильник</label>
+            <input type="text" name="Svtlnk" id="izmSvtlnk" value="" required="required" pattern="[A-Za-zА-Яа-яЁё0-9\s\_\/]+$"  />
+        </div>
+        <div>
+            <label for="">Лампа </label>
+            <input type="text" name="Lampa"  id="izmLampa" value="" required="required" />
+        </div>
+        <div>
+            <label for="">Количество шт.  </label>
+            <input type="number" name="Kol" value="" id="izmKol" required="required" pattern="[0-9]{1,2}" title="/две цифры/" />
+        </div>
+        <div>
+            <label for="">Мощность W  </label>
+            <input type="text" name="Pwr" value="" id="izmPwr" required="required" pattern="[0-9]{2,2}" title="/две цифры/"/>
+        </div>
+        <div>
+            <label for="">Световой поток лм. </label>
+            <input type="text" name="Potok" value="" id="izmPotok" required="required" pattern="[0-9]{4,4}" title="/четыре цифры/"/>
+        </div>
+        <div>   <input id="sbmtizmsvtl" type="submit" disabled="disabled" value="Изменить" /> </div>
+        </form>
+</div>
+        @section Scripts
+    {
+            <script src="~/MyScripts/SvtlncEdtr/SvtEdIndx.js" type="text/javascript"></script>
+        }

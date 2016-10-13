@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Исправление значений коэффициентов отражения";
+}
+<div>
+    <a class="myLnk" href="/">Раcчёт</a>
+    <a class="myLnk" href="/SvtlncEdtr">Добавление и редактирование светильников</a>
+    <a class="myLnk" href="/TabKofIsp">Создание Таблицы коэффициентов использования</a>
+    <a href="/IsprStrcMtrKfIsp/IsprStrctIndPom/@ViewBag.TblKfId">Исправить индексы помещения</a>
+</div>
+@*ViewBag.NameTbl*@
+@*<h2>IsprStrctKfOtrz</h2>*@
+<h3>Исправление значений коэффициентов отражения для таблицы  -- @ViewBag.NameTbl</h3>
+    <div>
+        <input id="TblKfId" name="TblKfId" type="hidden" value="@ViewBag.TblKfId" />
+        <input id="NmrCln" name="NmrCln" type="hidden" value="0" />
+    </div>
+    <div>
+        <input id="TblKfId" name="TblKfId" type="hidden" value="@ViewBag.TblKfId" />
+    </div>
+    <div id="tableBlock"></div>
+    <div id="editBlock">
+        <p><b>Редактирование </b></p>
+        <table>
+            <tr><td><input type="hidden" id="editId" /><input type="hidden" id="editTblKfId"  /></td><td></td></tr>
+            <tr><td><label>Потолок: </label></td><td><input type="number" id="editPtlk" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+            <tr><td><label>Стены: </label></td><td><input type="number" id="editSteny" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+            <tr><td><label>Пол: </label></td><td><input type="number" id="editPol" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+        </table>
+        <button id="editKofOtrz">Сохранить</button>
+    </div>
+    <div id="createBlock">
+        <p><b>Добавление </b></p>
+        <table>
+            <tr><td><input type="hidden" id="addId" /><input type="hidden" id="addTblKfId" /></td><td></td></tr>
+            <tr><td><label>Потолок: </label></td><td><input type="number" id="addPtlk" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+            <tr><td><label>Стены: </label></td><td><input type="number" id="addSteny" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+            <tr><td><label>Пол: </label></td><td><input type="number" id="addPol" required="required" pattern="^[0-9]{1,2}$" title="две цифры"/></td></tr>
+        </table>
+        <button id="addKofOtrz">Добавить</button>
+    </div>
+    @section Scripts
+        {
+        <script src="~/MyScripts/IsprStrcMtrKfIsp/IsprStrctKfOtrz.js" type="text/javascript">
+        </script>
+    }
+
