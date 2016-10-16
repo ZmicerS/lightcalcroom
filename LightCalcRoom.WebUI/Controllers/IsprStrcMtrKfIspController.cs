@@ -44,11 +44,7 @@ namespace LightCalcRoom.WebUI.Controllers
             }
             string snmntb = vvkof.Name;
             List<TblKfClmnUI> tkcllst = new List<TblKfClmnUI>();
-          /*  if (vv != null)
-            {
-                tkcllst = vv.Select(t => new TblKfClmnUI { Id = t.Id, NmrCl = t.NmrCl, Pol = t.Pol, Steny = t.Steny, Ptlk = t.Ptlk, TblKfId = t.TblKfId }).OrderBy(o => o.NmrCl).ToList(); ;
-            }
-            */
+          
             ViewBag.NameTbl = snmntb;
             ViewBag.TblKfId = tbkid;
             return View();
@@ -71,20 +67,16 @@ namespace LightCalcRoom.WebUI.Controllers
             string snmntb = vvkof.Name;
             var data = new { nzvtbl = snmntb, spspom = vvrl };
             /*
-             *      var data = tkcllst;
-       //     return Json(tkcllst, JsonRequestBehavior.AllowGet);
-            return Json(data, JsonRequestBehavior.AllowGet);
+             
              */
             ViewBag.NameTbl = snmntb;
             ViewBag.TblKfId = tbkid;
             return View();
-            // return Json(data, JsonRequestBehavior.AllowGet);
-            //  return null;
+           
         }
 
         [HttpPost]
         public ActionResult PlcDanIndxPm(int? TblKfId)
-        //public JsonResult PlcDanIndxPm(int? TblKfId)
         {
             int tbkid = TblKfId ?? 0;
             var vvkof = unitOfWork.TblKfRepstr.GetById(tbkid);
@@ -99,16 +91,8 @@ namespace LightCalcRoom.WebUI.Controllers
             }
             List<TblKfRowUI> vvrl = vv.Select(s => new TblKfRowUI { Id = s.Id, NmrRw = s.NmrRw, IndxPm = s.IndxPm, TblKfId = s.TblKfId }).OrderBy(r => r.NmrRw).ToList();
             string snmntb = vvkof.Name;
-            // var data = new { nzvtbl = snmntb, spspom = vvrl };
-
             var data = vvrl;
-            //     return Json(tkcllst, JsonRequestBehavior.AllowGet);
             return Json(data, JsonRequestBehavior.AllowGet);
-
-            // ViewBag.NameTbl = snmntb;
-            // ViewBag.TblKfId = tbkid;
-            // return View();
-            // return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         private IEnumerable<TblKfRowUI> GetDataIP(int tid)
@@ -135,10 +119,8 @@ namespace LightCalcRoom.WebUI.Controllers
             if (Decimal.TryParse(IndPm, NumberStyles.Number, CultureInfo.GetCultureInfo("en-US"), out res))
                 dIndPm = res;
 
-            // TblKfRow tkrw = unitOfWork.TblKfRowRepstr.GetById(pid);
            TblKfRow tkrw = new TblKfRow { IndxPm = dIndPm, TblKfId = tid, NmrRw = nomrow };
             tkrw.IndxPm = dIndPm;
-            //  tkrui.NmrRw = tkrui.NmrRw;
             unitOfWork.TblKfRowRepstr.Insert(tkrw);
             unitOfWork.Save();
             //
@@ -156,7 +138,6 @@ namespace LightCalcRoom.WebUI.Controllers
             //
             var data = GetDataIP(tid);
             //
-            //     return Json(tkcllst, JsonRequestBehavior.AllowGet);
             return Json(data, JsonRequestBehavior.AllowGet);
             //
             
@@ -169,22 +150,17 @@ namespace LightCalcRoom.WebUI.Controllers
             var vv = unitOfWork.TblKfRowRepstr.GetById(icid);
             if (vv == null)
             {
-                // return HttpNotFound();
                 var dat = new { };
                 return Json(dat, JsonRequestBehavior.AllowGet);
             }
             //
             var data = new { Id = vv.Id, NmrRw = vv.NmrRw, IndxPm = vv.IndxPm, TblKfId = vv.TblKfId };
             return Json(data, JsonRequestBehavior.AllowGet);
-            //
-            // return null;
         }
 
         [HttpPost]
         public ActionResult EditIndxPm(string Id, string TblKfId, string IndPm)
         {
-            //    return RedirectToAction("GetIndxPm"); //в ajax RedirectToAction не работает
-            // Получаем куки из контекста, которые могут содержать установленную культуру
             ////америкнская с точкой берет и умножает на 10/?????
             HttpCookie cultureCookie = HttpContext.Request.Cookies["lang"];
             int pid = Int32.Parse(Id);
@@ -198,28 +174,26 @@ namespace LightCalcRoom.WebUI.Controllers
 
             TblKfRow tkrw = unitOfWork.TblKfRowRepstr.GetById(pid);
             tkrw.IndxPm = dIndPm;
-            //  tkrui.NmrRw = tkrui.NmrRw;
+            
             unitOfWork.TblKfRowRepstr.Update(tkrw);
             unitOfWork.Save();
             var data = GetDataIP(tid);
             return Json(data, JsonRequestBehavior.AllowGet);
             //
-         //   return null;
         }
 
         public JsonResult PlcDanKfOtrz(int? TblKfId)
         {
             int tbkid = TblKfId ?? 0;
-            var vv = unitOfWork.TblKfClmnRepstr.Get(t => t.TblKfId == tbkid);//.FirstOrDefault();//   .GetById(tbkid);
+            var vv = unitOfWork.TblKfClmnRepstr.Get(t => t.TblKfId == tbkid);
             List<TblKfClmnUI> tkcllst = new List<TblKfClmnUI>();
             if (vv != null)
             {
                 tkcllst = vv.Select(t => new TblKfClmnUI { Id = t.Id, NmrCl = t.NmrCl, Pol = t.Pol, Steny = t.Steny, Ptlk = t.Ptlk, TblKfId = t.TblKfId }).OrderBy(o => o.NmrCl).ToList(); ;
             }
             var data = tkcllst;
-            //     return Json(tkcllst, JsonRequestBehavior.AllowGet);
+            
             return Json(data, JsonRequestBehavior.AllowGet);
-          //  return null;
         }
 
 
@@ -239,14 +213,13 @@ namespace LightCalcRoom.WebUI.Controllers
             unitOfWork.Save();
             var data = GetDataKO(TblKfId);
             return Json(data, JsonRequestBehavior.AllowGet);
-          //  return RedirectToAction("KfOtrzAjxZgrzDan", new { TblKfId = tkcl.TblKfId });
-            //      return null;
+          
         }
 
         private IEnumerable<TblKfClmnUI> GetDataKO(int tid)
         {
             int tbkid = tid;// TblKfId ?? 0;
-            var vv = unitOfWork.TblKfClmnRepstr.Get(t => t.TblKfId == tbkid);//.FirstOrDefault();//   .GetById(tbkid);
+            var vv = unitOfWork.TblKfClmnRepstr.Get(t => t.TblKfId == tbkid);//
             List<TblKfClmnUI> tkcllst = new List<TblKfClmnUI>();
             if (vv != null)
             {
@@ -274,11 +247,10 @@ namespace LightCalcRoom.WebUI.Controllers
             tkcl.Pol = Pol;
             unitOfWork.TblKfClmnRepstr.Update(tkcl);
             unitOfWork.Save();
-            // var vnn = unitOfWork.TblKfClmnRepstr.Get(t => t.TblKfId == TblKfId).OrderBy(t => t.NmrCl).ToList();
-            // return RedirectToAction("KfOtrzAjxZgrzDan", new { TblKfId = tkcl.TblKfId });
+            
             var data = GetDataKO(TblKfId);
             return Json(data, JsonRequestBehavior.AllowGet);
-            // return null;
+            
         }
 
         protected override void Dispose(bool disposing)

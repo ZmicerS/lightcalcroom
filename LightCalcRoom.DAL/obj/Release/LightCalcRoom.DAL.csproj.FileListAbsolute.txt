@@ -1,0 +1,9 @@
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\LightCalcRoom.DAL.dll.config
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\LightCalcRoom.DAL.dll
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\LightCalcRoom.DAL.pdb
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\EntityFramework.dll
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\EntityFramework.SqlServer.dll
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\EntityFramework.xml
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\bin\Release\EntityFramework.SqlServer.xml
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\obj\Release\LightCalcRoom.DAL.dll
+I:\WEB_ASP_MVC\lala\LightCalcRoom\LightCalcRoom.DAL\obj\Release\LightCalcRoom.DAL.pdb

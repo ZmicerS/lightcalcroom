@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
-    // alert("document).ready");
- //   alert("дададада");
+    
     GetAllIndPom();
     $("#editIndPom").click(function (event) {
         event.preventDefault();
@@ -9,11 +8,12 @@
     $("#addIndPom").click(function (event) {
         event.preventDefault();
         AddIndxPom();
-            //      alert("editKofOtrz");
-        //  alert(event.target);
+           
     });
 });
-function say(data) { console.log(data); }
+function say(data) {
+    //console.log(data);
+}
 //
 // Получение всехколонок по ajax-запросу
 function GetAllIndPom() {
@@ -40,10 +40,10 @@ function GetAllIndPom() {
 
 
 function WriteResponse(data) {
-   // alert(data);
+   
     var strResult = "<table border=0><th>Номер колонки</th><th>Индекс помещения</th>";
     $.each(data, function (index, data) {
-        // alert(data.Id);
+        
         strResult += "<tr><td>" + data.NmrRw + "</td><td> " + data.IndxPm + "</td>" +
              "<td><a id='editItem' data-item='" + data.Id + "' onclick='EditItem(this);' >Редактировать</a></td>"
         $("#NmrRow").val(data.NmrRw);
@@ -54,19 +54,16 @@ function WriteResponse(data) {
 
 function EditItem2(e)
 {
-   // alert('uuu');
-  //  alert(e);
+  
 }
 
 function AddIndxPom() {
-   // aleret("aaa");
+   
     var elm = $('#addIndPm');
     say(elm);
     var elmval = elm.val();
     var ptrn = $('#addIndPm').attr("pattern");
-    //   var ptrn = elm.getAttribute("pattern");смешіваніе jqery і DOM не работает
-    //   alert(elmval);
-    //  alert(ptrn);
+    
     var reg = new RegExp(ptrn)
     var us = reg.test(elmval);
     if (!us) {
@@ -85,16 +82,14 @@ function AddIndxPom() {
         dataType: "JSON",
         data: ipm,
         success: function (data) {
-            //    alert("УСПЕХКОЛОНКА");
-            //GetAllBooks();
+            
             GetAllIndPom();
         },
         complete: function () {
-            //   alert("Завершение выполнения");
+            
         },
         error: function (x, y, z) {
-            //alert("/TabKofIsp/EditColKofOtr/ -- неудача");
-            //  alert(responseText);
+            
             alert(x + '\n' + y + '\n' + z);
             alert(x.responseText);
         }
@@ -103,7 +98,7 @@ function AddIndxPom() {
 
     // обработчик редактирования
     function EditItem(el) {
-     //        alert("Редактировать");
+     //       
         // получаем id редактируемого объекта
         $("#createBlock").css('display', 'none');
         $("#editBlock").css('display', 'inline-block');
@@ -120,12 +115,11 @@ function AddIndxPom() {
             dataType: 'json',
             data: { Id: id },
             success: function (data) {
-                //   alert("ShowIndPom(data)");
-             //   alert(data);
+               
                 ShowIndPom(data);
             },
             error: function (x, y, z) {
-            //    alert("/IndxPmSzdKr/GetIndxPm/ -- неудача")
+            
                 alert(x + '\n' + y + '\n' + z);
             }
         })
@@ -145,10 +139,10 @@ function AddIndxPom() {
 
     function EditIndxPom() {
         var elm = $('#editIndPm');
-        say(elm);
+        
         var elmval = elm.val();
         var ptrn = elm.attr("pattern");
-     //   alert(ptrn)
+     
         var reg = new RegExp(ptrn)
         var us = reg.test(elmval);
         if (!us) {
@@ -166,16 +160,14 @@ function AddIndxPom() {
             dataType: "JSON",
             data: ipm,
             success: function (data) {
-                //    alert("УСПЕХКОЛОНКА");
-                //GetAllBooks();
+                
                 GetAllIndPom();
             },
             complete: function () {
-                //   alert("Завершение выполнения");
+                
             },
             error: function (x, y, z) {
-                //alert("/TabKofIsp/EditColKofOtr/ -- неудача");
-                //  alert(responseText);
+                
                 alert(x + '\n' + y + '\n' + z);
                 alert(x.responseText);
             }

@@ -1,11 +1,9 @@
 ﻿$(document).ready(function () {
-    // alert("document).ready");
-    //    alert("дададада");
+    
     $('#slsvt').on('change', fncchangesvtl);
     $('form#frmrscht').submit(fncrscht);
     fncopnstrnc();
-  //  var val = $('#slsvt').val();
-  //  alert(val);
+  
 });
 function say(data) {
     //console.log(data);
@@ -15,36 +13,20 @@ function fncopnstrnc()
 {
     var val = $('#slsvt').val();
     var svt = $('#slsvt')[ 0 ]; ;
-   // alert(val);
     fncchangesvtl.call(svt);
     return;
-    udlkofotrz();//удаление данных в выборе отражения
-    udltblkfisp()//удаляем таблицу коф. использования
-    udltlmpstrnc();//удаляем информацию о лампе в светильнике
-    // alert(val);
-    zprvklsubmit('sbmtrscht', 'disabled');
-    $.ajax({
-        url: '/Home/SmnSvtlnc',
-        type: "POST",
-        dataType: "JSON",
-        data: { svtlid: val },
-        success: scsajaxsmnsvtl,
-        complete: function () {
-            // alert("!!Завершение выполнения");
-            say('Завершение выполнения');
-        }
-    });
+   
 }
 //
 function fncchangesvtl() {
-  // alert(this.value);
+  
   var val = this.value;
-  // alert(this.value);
+ 
     udlkofotrz();//удаление данных в выборе отражения
     udltblkfisp()//удаляем таблицу коф. использования
     udltlmpstrnc();//удаляем информацию о лампе в светильнике
     udlrscht();
-    // alert(val);
+   
     zprvklsubmit('sbmtrscht', 'disabled');
     $.ajax({
         url: '/Home/SmnSvtlnc',
@@ -53,7 +35,7 @@ function fncchangesvtl() {
         data: { svtlid: val },
         success: scsajaxsmnsvtl,
         complete: function () {
-           // alert("!!Завершение выполнения");
+          
                say('Завершение выполнения');
         }
     });
@@ -61,12 +43,10 @@ function fncchangesvtl() {
 
 
 function scsajaxsmnsvtl(data) {
-   // alert("@@scsajax");
-  //  alert(data);
-    // say('scsajaxsmnsvtl');
+   
     if (data.TblKfId > 0 && data.Kolstr > 0 && data.Kolcln > 0)
     {
-        //  alert(data);
+       
         vstvktbl(data);//вставляем таблицу коф. использования      
         vstvkslct("otrz", data.Kolcln, data.Shapka);
         var lest = data.Lmpest;
@@ -92,8 +72,7 @@ function vstvktbl(data) {//вставляем таблицу коф. испол�
     var arshpk = data.Shapka;
     var arlv = data.Levo;
     var arznc = data.Znac;
-  //  var elm = document.getElementById("kut");
-    //  var vt = elm.getElementsByTagName("table");
+  
     var elm = document.getElementById("tuttbl");
     var fragment = document.createDocumentFragment();
     var table = document.createElement("table");
@@ -101,7 +80,7 @@ function vstvktbl(data) {//вставляем таблицу коф. испол�
     var capt = document.createElement('caption');
     capt.appendChild(document.createTextNode("Таблица коф. исп-"+data.NzvTbl));
     table.appendChild(capt);
-    say(table)
+   
     var thead = document.createElement('thead');
     for (i = 0; i < 3; i++) {
         var tr = document.createElement('tr');
@@ -124,20 +103,14 @@ function vstvktbl(data) {//вставляем таблицу коф. испол�
             td.appendChild(document.createTextNode(arshpk[j]))
             tr.appendChild(td)
         }
-        say(tr);
-        //   table.appendChild(tr)
+        
         thead.appendChild(tr)
-        say(thead);
+        
     }//for shapka
     table.appendChild(thead)
-    say(table);
+    
     //
-    //данные таблицы
-    var tbody = document.createElement('tbody');
-    table.appendChild(tbody);
-    say(table);
-    //
-    say(table);
+   
     //данные таблицы
     var tbody = document.createElement('tbody');
     for (i = 0; i < klstrk; i++) {
@@ -159,10 +132,10 @@ function vstvktbl(data) {//вставляем таблицу коф. испол�
         say(tbody);
     }
     table.appendChild(tbody);
-    say(table);
+    
     //
     fragment.appendChild(table);
-   // alert(fragment)
+   
     elm.appendChild(fragment)
     say(fragment);
     say(elm);
@@ -170,26 +143,22 @@ function vstvktbl(data) {//вставляем таблицу коф. испол�
 
 
 function udltblkfisp() {//удаляем таблицу коф. использования
-    //  document.getElementById("tblkfisp");
-  //  ZnsZncDvInpt("kut", "kdtb", "-1");
+    
     UdlSdrTblDvTbl("tuttbl");
 }
 
 
 function UdlSdrTblDvTbl(id) {//удаляем содержимое таблицы внутри какогото div с id
-    //   var elem = document.getElementById("tblkfisp");
-    //   elem.parentNode.removeChild(elem);
+    
     var elm = document.getElementById(id);//"kut");
-  //  var vt = elm.getElementsByTagName("table");
-  //  say(vt);
-    //  if (vt != null) {
+ 
     if (elm != null) {
-        // var vtbl = vt[0];
+        
         var vtbl = elm;
         while (vtbl.lastChild) {
             vtbl.removeChild(vtbl.lastChild);
         }
-    //    say(vtbl);
+    
     }
 }//function UdlSdrTblDvTbl(id)
 
@@ -207,7 +176,7 @@ function vstvkslct(nzvid, klstlb, shpk) {
             option.selected = "selected";
         x.appendChild(option);
     //    x.add(option);
-    //    say(x);
+    
     }
 }
 
@@ -217,27 +186,25 @@ function udlkofotrz() {//удаление данных в выборе отра�
 }
 
 function udlslctoptns(sid) {//удаление  options в select
-    // var elm = document.getElementById("otrz");
+    
     var elm = document.getElementById(sid);
-    say("udlslctoptns");
-    say(elm);
+    
     while (elm.lastChild) {
         elm.removeChild(elm.lastChild);
     }
-  //  say(elm);
+  
 }
 
 function vstvtxtid(nzvid, dntxt) {
     var elmid = document.getElementById(nzvid);
-    say(elmid);
+    
     if (elmid != null) {
         elmid.value = dntxt;
     }
 }
 
 function udltlmpstrnc() {//удаляем информацию о лампе в светильнике
-    // alert("udltlmpstrnc");
-    //say('udltlmpstrnc()');
+   
     var elms = ['nzvlmp', 'svtptk', 'pwr', 'kl'];
     inptclrponame(elms);
 }
@@ -249,7 +216,7 @@ function inptclrponame(elms) {//очищаем поля заданных input �
         for (index = 0; index < elms.length; ++index) {
             var elm = document.getElementsByName(elms[index]);
             elm[0].value = "";
-            say(elm);
+           
         }
     }
 }
@@ -274,7 +241,6 @@ function zprvklsubmit(nzvid, status) {// блокирование и разбл�
 
 function fncrscht(e) {
     // Запрещаем стандартное поведение для кнопки submit
-       // alert('submit');
     e.preventDefault();
     e.stopPropagation();
     udlrscht();
@@ -294,12 +260,11 @@ function fncrscht(e) {
 function udlrscht()
 {
     var elm = document.getElementById("rschtvyv");
-   // alert("udlrscht");
-    say(elm);
+   
     while (elm.lastChild) {
         elm.removeChild(elm.lastChild);
     }
-    say(elm);
+   
 }
 
 
@@ -328,9 +293,9 @@ function fncsbmtrscht() {
             return;
         }
         dtotpr[stt] = elmval;
-       // alert(dtotpr);
+       
     }
-  //  alert(dtotpr);
+  
     var vsv = document.getElementsByName('KdSvtl')[0].value;
     dtotpr['KdSvtl'] = vsv;
     var votr = document.getElementsByName('KdOtrz')[0].value;
@@ -349,7 +314,7 @@ function fncsbmtrscht() {
 
 function scsajaxrscht(data)
 {
-    //  alert("Завершение ")
+    
     var elm = document.getElementById("rschtvyv");
     var newtext = document.createTextNode(data.Sitg);
     elm.appendChild(newtext);

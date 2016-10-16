@@ -18,8 +18,6 @@ namespace LightCalcRoom.DAL.Concreate
 
         public int? TblKfId { get; set; }//  // будет  ON DELETE CASCADE
         public virtual TblKf TblKf { get; set; }
-  //      public int? SvtlGrphId { get; set; }// будет  ON DELETE CASCADE
-    //    public virtual SvtlGrph SvtlGrph { get; set; }
         public virtual ICollection<TblLmp> TblLmps { get; set; }
         public Svtl()
         {
@@ -41,32 +39,27 @@ namespace LightCalcRoom.DAL.Concreate
 
 
     public class TblLmp //уже иногда в светильниках могут встречаться разные лампы
-    {
-        //  [Key]
-        //  [ForeignKey("Svtl")]
+    {        
         public int Id { get; set; }
         public int? NmrStrk { get; set; }
         public string Name { get; set; }
         public int Wt { get; set; }
         public int Lumen { get; set; }
 
-        public int KlLmp { get; set; }
-        //    public Svtl Svtl { get; set; }
+        public int KlLmp { get; set; }        
         public int? SvtlId { get; set; }
         public virtual Svtl Svtl { get; set; }
     }
 
     public class TblKf
     {
-        // public int TblKfId { get; set; }
-        //    [Key]
-        //    [ForeignKey("Svtl")]
+        
         public int Id { get; set; }
-        //  public int SvtlId { get; set; }
+        
         public string Name { get; set; }
-        //     public int NmrStrk { get; set; }
+        
         public virtual ICollection<Svtl> Svtls { get; set; }
-        //public virtual Svtl Svtl { get; set; }
+        
         public virtual ICollection<TblKfClmn> TblKfClmns { get; set; }
         public virtual ICollection<TblKfRow> TblKfRows { get; set; }
         public virtual ICollection<TblZnc> TblZncs { get; set; }
@@ -143,14 +136,6 @@ namespace LightCalcRoom.DAL.Concreate
         public DbSet<TblLmp> TblLmps { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Database.SetInitializer(new DatabaseInitializerSvetilWithSeedData());
-           /* modelBuilder.Configurations.Add(new SvtlConfiguration());
-            modelBuilder.Configurations.Add(new TblLmpConfiguration());
-            modelBuilder.Configurations.Add(new TblKfConfiguration());
-            modelBuilder.Configurations.Add(new TblKfClmnConfiguration());
-            modelBuilder.Configurations.Add(new TblKfRowConfiguration());
-            modelBuilder.Configurations.Add(new TblKfTblZncConfiguration());
-            */
         }
     }
 
@@ -160,8 +145,7 @@ namespace LightCalcRoom.DAL.Concreate
    {
        protected override void Seed(SvetilContext context)
        {
-           //      Svtl s1 = new Svtl { Name = "NACALO" };
-             //    context.Svtls.Add(s1);
+           
 
        }
    }

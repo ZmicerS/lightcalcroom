@@ -11,7 +11,6 @@ using System.Text;
 using LightCalcRoom.WebUI.Models;
 using LightCalcRoom.DAL.Infrastructure;
 using LightCalcRoom.DAL.Concreate;
-//using LightCalcRoom.WebUI.Models;
 namespace LightCalcRoom.WebUI.Controllers
 {
     public class TabKofIspController : Controller
@@ -25,13 +24,12 @@ namespace LightCalcRoom.WebUI.Controllers
         // GET: /TabKofIsp/
         public ActionResult Index()
         {
-          //  IEnumerable<SelectListItem> tkf = unitOfWork.TblKfRepstr.GetAll().OrderBy(s => s.Name)
             List<SelectListItem> lstslit;
             var vrtkf = unitOfWork.TblKfRepstr.GetAll().OrderBy(s => s.Name);
             if (vrtkf!=null)
             {
                 IEnumerable<SelectListItem> tkf = vrtkf.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.Name });
-                //List<SelectListItem> lstslit = tkf.ToList();
+                
                 lstslit = tkf.ToList();
                 lstslit.Insert(0, new SelectListItem { Value = "-1", Text = "-выберите таблицу-", Selected = true });
                 SelectList sllsttb = new SelectList(lstslit, "Value", "Text");
@@ -88,7 +86,7 @@ namespace LightCalcRoom.WebUI.Controllers
               unitOfWork.Save();
               int? ik = tbkf.Id;
               int id = ik ?? 0;
-             // return RedirectToAction("EdtrTblStnd", new { TblName = TblName });
+             
               return RedirectToAction("EdtrTblStnd", new { TblKfId = id });
           }
             if (MetaTbl == "nonstnd")
@@ -102,12 +100,7 @@ namespace LightCalcRoom.WebUI.Controllers
                 unitOfWork.TblKfRepstr.Insert(tbkf);
                   unitOfWork.Save();
                   var idtb = tbkf.Id;
-                return RedirectToAction("IsprStrctKfOtrz","IsprStrcMtrKfIsp", new { id = idtb });
-                //var idtb = 2;
-                //   var vk = unitOfWork.TblKfRepstr.Get(t => TblName == t.Name).Select(i => i.Id).FirstOrDefault();
-                //  return RedirectToAction("EdtrTblNonStnd", new { TblName = TblName });
-                return RedirectToAction("IsprStrctKfOtrz", "KfOtrzSzdKr" ,new { id = idtb });
-             //   return RedirectToAction("EdtrTblNonStnd", new { TblKfId = idtb });
+                return RedirectToAction("IsprStrctKfOtrz","IsprStrcMtrKfIsp", new { id = idtb });                
             }
 
             return View();
@@ -117,9 +110,9 @@ namespace LightCalcRoom.WebUI.Controllers
         [HttpGet]
         public ActionResult EdtrTblStnd(int? TblKfId)
         {
-            //    var vk = null;
+            
             int tkid = TblKfId ?? 0;
-            //    vk = unitOfWork.TblKfRepstr.Get(t => tkid == t.Id).Select(i => i.Id).FirstOrDefault();
+            
             var vk = unitOfWork.TblKfRepstr.GetById(tkid);
             IEnumerable<TblKfRowUI> tbrw;
             IEnumerable<TblKfClmnUI> tbcl;
@@ -174,7 +167,7 @@ namespace LightCalcRoom.WebUI.Controllers
                     string stcl = String.Format("{0:d2}", tz.NmrCl);
                     if (tz.NmrRw <= klrw && tz.NmrCl <= klcl)
                     {
-                        //   mskfisp[tz.NmrRw-1,tz.NmrCl-1] = tz.Znac;
+                        
                         mskfisp[tz.NmrRw - 1, tz.NmrCl - 1] = String.Format("{0}", tz.Znac);
                     }
                     else
@@ -200,7 +193,7 @@ namespace LightCalcRoom.WebUI.Controllers
         {
             var vkdtb = HttpContext.Request["kdtb"];
             //          
-            //int ikdtb = Int32.Parse((string)vkdtb);
+            
             int ikdtb=0;
             int number;
             bool result = Int32.TryParse((string)vkdtb, out number);
@@ -235,14 +228,14 @@ namespace LightCalcRoom.WebUI.Controllers
             unitOfWork.Save();
             //
             return RedirectToAction("Index");
-        //    return View();
+        
         }
 
         public ActionResult EdtrTblNonStnd(int? TblKfId)
         {
-            //    var vk = null;
+            
             int tkid = TblKfId ?? 0;
-            //    vk = unitOfWork.TblKfRepstr.Get(t => tkid == t.Id).Select(i => i.Id).FirstOrDefault();
+            
             var vk = unitOfWork.TblKfRepstr.GetById(tkid);
             IEnumerable<TblKfRowUI> tbrw;
             IEnumerable<TblKfClmnUI> tbcl;
@@ -297,7 +290,7 @@ namespace LightCalcRoom.WebUI.Controllers
                     string stcl = String.Format("{0:d2}", tz.NmrCl);
                     if (tz.NmrRw <= klrw && tz.NmrCl <= klcl)
                     {
-                        //   mskfisp[tz.NmrRw-1,tz.NmrCl-1] = tz.Znac;
+                        
                         mskfisp[tz.NmrRw - 1, tz.NmrCl - 1] = String.Format("{0}", tz.Znac);
                     }
                     else
@@ -406,11 +399,9 @@ namespace LightCalcRoom.WebUI.Controllers
                     foreach (TblKfClmn tkc in vcol)
                     {
                         int iclmn = tkc.NmrCl;
-                        // int? zncn = db.TblZncs.Where(t => t.NmrCl == iclmn && t.NmrRw == irw && kodtab==t.TblKfId).First().Znac;
+                        
                         var vzz = tk.TblZncs.Where(t => t.NmrCl == iclmn && t.NmrRw == irw && kodtab == t.TblKfId).FirstOrDefault();
 
-
-                        //int znc = zncn ?? 0;
                         int znc = (vzz == null) ? 0 : vzz.Znac;
                         sb.Append("#");
                         string stz = String.Format("{0:d2}", znc);
@@ -419,7 +410,7 @@ namespace LightCalcRoom.WebUI.Controllers
                     sb.Append("]");
                     sb.Append(scrlf);
                     string stvyv = sb.ToString();
-                    //      Console.WriteLine(stvyv);
+                    //      
                     lstdn.Add(stvyv);
                 }//foreach (TblKfRow tkr in vrw)
                 skntbl = "<----#KONTABL#---->" + scrlf;

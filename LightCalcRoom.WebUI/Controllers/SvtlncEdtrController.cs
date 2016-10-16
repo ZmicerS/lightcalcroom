@@ -35,7 +35,7 @@ namespace LightCalcRoom.WebUI.Controllers
             if (vrtkf != null)
             {
                 IEnumerable<SelectListItem> tkf = vrtkf.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.Name });
-                //List<SelectListItem> lstslit = tkf.ToList();
+                
                 lstslit = tkf.ToList();
                 lstslit.Insert(0, new SelectListItem { Value = "-1", Text = "-выберите таблицу-", Selected = true });
                 SelectList sllsttb = new SelectList(lstslit, "Value", "Text");
@@ -75,13 +75,12 @@ namespace LightCalcRoom.WebUI.Controllers
         [HttpPost]
         public JsonResult PlcTblKfAjx(int TblId=0)
         {
-            //var data = new {};
+           
             TbKfExOtbrUI tabkof = new TbKfExOtbrUI();
             string Nazva;
             var vres = unitOfWork.TblKfRepstr.GetById(TblId);
             if (vres != null)
             {
-                //   var vv=vres.TblKfClmns.OrderBy
                 Nazva = vres.Name;
                 IEnumerable<TblKfRowUI> tbrw = vres.TblKfRows.OrderBy(o => o.NmrRw).Select(t => new TblKfRowUI { Id = t.Id, NmrRw = t.NmrRw, IndxPm = t.IndxPm, TblKfId = t.TblKfId }).ToList();
                 IEnumerable<TblKfClmnUI> tbcl = vres.TblKfClmns.OrderBy(o => o.NmrCl).Select(t => new TblKfClmnUI { Id = t.Id, NmrCl = t.NmrCl, Pol = t.Pol, Steny = t.Steny, Ptlk = t.Ptlk, TblKfId = t.TblKfId }).ToList();
@@ -103,7 +102,7 @@ namespace LightCalcRoom.WebUI.Controllers
                     msstrk[m] = String.Format("{0:0.##}", rw.IndxPm);
                     m++;
                 }
-                //  int[,] mskfisp = new int[klrw, klcl];
+                
                 string[,] mskfisp = new string[klrw, klcl];
                 IEnumerable<TbKZncUI> tbznc = vres.TblZncs.Select(s => new TbKZncUI { Id = s.Id, NmrCl = s.NmrCl, NmrRw = s.NmrRw, Znac = s.Znac }).OrderBy(o => o.NmrRw).ThenBy(o => o.NmrCl).Cast<TbKZncUI>().ToList();
                 foreach (TbKZncUI tz in tbznc)
@@ -113,7 +112,7 @@ namespace LightCalcRoom.WebUI.Controllers
                     string stcl = String.Format("{0:d2}", tz.NmrCl);
                     if (tz.NmrRw <= klrw && tz.NmrCl <= klcl)
                     {
-                        //   mskfisp[tz.NmrRw-1,tz.NmrCl-1] = tz.Znac;
+                        
                         mskfisp[tz.NmrRw - 1, tz.NmrCl - 1] = String.Format("{0}", tz.Znac);
                     }
                     else
@@ -121,11 +120,10 @@ namespace LightCalcRoom.WebUI.Controllers
                         int ui = 0;
                     }
                 }
-                // var data = new { Kolstr = klrw, Kolcln = klcl, Nazva = "ARSR/R", Shapka = mszgl, Levo = msstrk, Znac = mskfisp };
+                
                 tabkof = new TbKfExOtbrUI { Id = TblId, Nazva = Nazva, Kolcln=klcl,Kolstr=klrw,MsKfOtrz = mszgl,MsIndPm=msstrk,MsKf=mskfisp };
             }
-        //    else
-          //      data = new { Kolstr = 1 };
+       
             return Json(tabkof);
         }
 
@@ -186,7 +184,7 @@ namespace LightCalcRoom.WebUI.Controllers
             }//
             var data = new { Lmpest = Lmpest, NzvSvtl = NzvSvtl, NazvaLmp = NazvaLmp, KlLmp = KlLmp, Wt = Wt, Lumen = Lumen, IdLmp = IdLmp };
                 return Json(data);
-           // return null;
+           
         }
 
 

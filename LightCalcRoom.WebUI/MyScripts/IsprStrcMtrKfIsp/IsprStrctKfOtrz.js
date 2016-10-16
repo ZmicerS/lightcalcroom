@@ -1,13 +1,12 @@
 ﻿$(document).ready(function () {
-    // alert("document).ready");
-    //   alert("дададада");
+    
     GetAllColumns();
     $("#editKofOtrz").click(function (event) {
         event.preventDefault();
         EditClmn();
     });
 
-    //      alert("after edit clmn");
+   
 
     $("#addKofOtrz").click(function (event) {
         event.preventDefault();
@@ -17,7 +16,9 @@
 
    
 });
-function say(data) { console.log(data); }
+function say(data) {
+  //  console.log(data);
+}
 //
 // Получение всехколонок по ajax-запросу
 function GetAllColumns() {
@@ -35,7 +36,7 @@ function GetAllColumns() {
     $("#addPol").val("");
     //
     val = $("#TblKfId").val();
-    //  alert(val);
+    
     $.ajax({
         url: '/IsprStrcMtrKfIsp/PlcDanKfOtrz',
         type: "POST",
@@ -47,10 +48,10 @@ function GetAllColumns() {
 //
 
 function WriteResponse(data) {
-  //  alert(data);
+  
     var strResult = "<table><th>Номер колонки</th><th>Потолок</th><th>Стены</th><th>Пол</th>";
     $.each(data, function (index, data) {
-        // alert(data.Id);
+        
         strResult += "<tr><td>" + data.NmrCl + "</td><td> " + data.Ptlk + "</td><td>" +
    data.Steny + "</td><td>" + data.Pol +
    "</td><td><a id='editItem' data-item='" + data.Id + "' onclick='EditItem(this);' >Редактировать</a></td>"
@@ -62,7 +63,7 @@ function WriteResponse(data) {
 
 // добавление колонки
 function AddClmn() {
-  //  alert("Добавить колонку ");
+  
     var elm = $('#addPtlk');
     say(elm);
     var elmval = elm.val();
@@ -97,7 +98,7 @@ function AddClmn() {
     }
     //
     var clmnk = {
-        // Id: $('#editId').val(),
+        
         TblKfId: $('#TblKfId').val(),
         Ptlk: $('#addPtlk').val(),
         Steny: $('#addSteny').val(),
@@ -110,15 +111,14 @@ function AddClmn() {
         dataType: "JSON",
         data: clmnk,
         success: function (data) {
-            //    alert("УСПЕХКОЛОНКА");
-            //GetAllBooks();
+            
             GetAllColumns();
         },
         complete: function () {
-            //    alert("Завершение выполнения");
+            
         },
         error: function (x, y, z) {
-            //alert("/TabKofIsp/EditColKofOtr/ -- неудача");
+            
             alert(x + '\n' + y + '\n' + z);
         }
     })
@@ -127,13 +127,13 @@ function AddClmn() {
 
 // обработчик редактирования
 function EditItem(el) {
- //   alert("Редактировать");
+ //  
     // получаем id редактируемого объекта
     var id = $(el).attr('data-item');
     GetColKofOtr(id);
 };
 
-// запрос книги на редактирование
+
 function GetColKofOtr(id) {
     $.ajax({
         url: '/IsprStrcMtrKfIsp/GetColKofOtr/',
@@ -141,8 +141,7 @@ function GetColKofOtr(id) {
         dataType: 'json',
         data: { Id: id },
         success: function (data) {
-          //  alert("ShowBook(data)");
-            //  alert(data);
+          
             ShowCol(data);
         },
         error: function (x, y, z) {
@@ -152,9 +151,9 @@ function GetColKofOtr(id) {
     })
 };
 
-// вывод данных редактируемой книги в поля для редактирования
+
 function ShowCol(clnm) {
-    //alert(clnm);
+    
     if (clnm != null) {
         $("#createBlock").css('display', 'none');
         $("#editBlock").css('display', 'inline-block');
@@ -219,15 +218,14 @@ function EditClmn() {
         dataType: "JSON",
         data: clmnk,
         success: function (data) {
-            //    alert("УСПЕХКОЛОНКА");
-            //GetAllBooks();
+           
             GetAllColumns();
         },
         complete: function () {
             //    alert("Завершение выполнения");
         },
         error: function (x, y, z) {
-            //alert("/TabKofIsp/EditColKofOtr/ -- неудача");
+          
             alert(x + '\n' + y + '\n' + z);
         }
     });

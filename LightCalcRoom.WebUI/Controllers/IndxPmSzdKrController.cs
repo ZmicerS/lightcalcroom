@@ -44,15 +44,12 @@ namespace LightCalcRoom.WebUI.Controllers
             string snmntb = vvkof.Name;
             var data = new { nzvtbl = snmntb, spspom = vvrl };
             /*
-             *      var data = tkcllst;
-       //     return Json(tkcllst, JsonRequestBehavior.AllowGet);
-            return Json(data, JsonRequestBehavior.AllowGet);
+            
              */
             ViewBag.NameTbl = snmntb;
             ViewBag.TblKfId = tbkid;
             return View();
-            // return Json(data, JsonRequestBehavior.AllowGet);
-            //  return null;
+            
         }
 
 

@@ -1,23 +1,13 @@
 ﻿$(document).ready(function () {
-   // alert("SVETILNIK");
+   
     $('#TblKfId').on('change', fncchangetblname);
     $('#SvtlId').on('change', fchngsvtl)
- /*  
-    $('input:radio[name="dobizmsvt"]').change(function () {
-        if ($(this).val() == 'dbvl') {
-            alert("test");
-        }
-        if ($(this).val() == 'izm') {
-            alert("testNo");
-        }
-    });
-    */
     $('input:radio[name="dobizmsvt"]').on('change', fncdbizm)
 });
 
 function fncdbizm()
 {
-   // alert("fncdbizm");
+   
     val = $(this).val();
     $('#SvtlId').val("-1");
     $('#TblKfId').val("-1");
@@ -40,10 +30,9 @@ function fncdbizm()
 }
 
 function fncchangetblname() {
-    // alert("fncchangetblname");
+    
     var val = this.value;
-  //  $('input:hidden[name=kdtb]').val(val);
-    // alert(val);
+  
     zprvklsubmit('sbmsvtl', 'disabled');
     $.ajax({
         url: '/SvtlncEdtr/PlcTblKfAjx',
@@ -55,18 +44,13 @@ function fncchangetblname() {
 };
 
 function say(data) {
-    console.log(data);
+   // console.log(data);
 };
 
 function scsajxtblkf(data) {
-   /* alert(scsajxtblkf);
-    alert(data);
-    say(data);
-    alert(data.Id);
-    alert(data.Nazva)
-    */
+   
     $('#tbl').empty();
-  //  alert($('input:hidden[name=kdtb]').val());
+  
     if (typeof data !== 'undefined')
         {
         if (data!=null && data.Id>0)
@@ -78,7 +62,7 @@ function scsajxtblkf(data) {
 };
 
 function rabtabl(data) {
-//    console.log(data);
+
     var Id = data.TblId;
     var Nazva = data.Nazva;
     var klstlb = data.Kolcln;
@@ -89,7 +73,7 @@ function rabtabl(data) {
     var table = $('<table border="1"></table>')
     var capt = $('<caption>' + Nazva + '</caption>')
     table.append(capt);
-   // console.log(table);
+  
     //шапка
     for (i = 0; i < 3; i++) {
 
@@ -106,12 +90,10 @@ function rabtabl(data) {
             default:
         }    
     for (j = klstlb * i; j < (klstlb * (i + 1)) ; j++) {
-   //     console.log(arshpk[j]);
-        // var col = $('<td></td>').text(arshpk[j]);
+   
         row.append('<td>' + arshpk[j] + '</td>');
     }
- //   console.log(row);
-    // row.append(col);
+ 
     table.append(row);
     }
     //
@@ -119,7 +101,7 @@ function rabtabl(data) {
     for (i = 0; i < klstrk; i++) {
         var row = $('<tr><td>' + arlv[i] + '</td></tr>')
         for (j = klstlb * i; j < (klstlb * (i + 1)) ; j++) {
-         //   console.log(arznc[j]);
+        
             row.append('<td>' + arznc[j] + '</td>');
         }
         table.append(row);
@@ -133,7 +115,7 @@ function rabtabl(data) {
 
 function zprvklsubmit(nzvid, status) {// блокирование и разблокирование кнопки submit
     var sbmt = document.getElementById(nzvid);
-    //alert(sbmt);
+    
     if (sbmt.type=="submit")
     {
         //alert(sbmt);
@@ -160,7 +142,7 @@ function fchngsvtl() {
     $("#izmPotok").val("");
     zprvklsubmit('sbmtizmsvtl', 'disabled');
     val = this.value;
-   // alert(val);
+  
     $.ajax({
         url: '/SvtlncEdtr/PlcSvtlAjx',
         type: 'POST',
@@ -172,7 +154,7 @@ function fchngsvtl() {
 
 function scssvtl(data)
 {
-   // alert(data);
+   
     if (data.Lmpest > 0)
     {
         $("#IdLmp").val(data.IdLmp);

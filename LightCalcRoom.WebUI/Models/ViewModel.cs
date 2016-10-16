@@ -6,10 +6,7 @@ using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 namespace LightCalcRoom.WebUI.Models
 {
- /*   public class ViewModel
-    {
-    }
-  */
+ 
 
       public class SvtlUI
     {
@@ -27,7 +24,7 @@ namespace LightCalcRoom.WebUI.Models
         public int Wt { get; set; }
         public int Lumen { get; set; }
         public int SvtlId { get; set; }
-     //   public virtual Svtl Svtl { get; set; }// новигационное свойство обязательно для создания FOREIGN KEY
+     
     }
 
 
@@ -35,9 +32,9 @@ namespace LightCalcRoom.WebUI.Models
 
     public class TblKfUI
     {
-        // public int TblKfId { get; set; }
+        
         public int Id { get; set; }
-        //  public int SvtlId { get; set; }
+       
         public int NmrStrk { get; set; }
 
         public int F883 { get; set; }
@@ -48,10 +45,10 @@ namespace LightCalcRoom.WebUI.Models
         public int F531 { get; set; }
         public int F331 { get; set; }
         public int F000 { get; set; }
-        public decimal IndxPm { get; set; }//modelBuilder.Entity<Phone>().Property(p => p.Price).HasPrecision(15,2);
+        public decimal IndxPm { get; set; }
 
         public int SvtlId { get; set; }
- //       public virtual Svtl Svtl { get; set; }
+ 
         public TblKfUI()
         {
             F883 = 0;
@@ -79,10 +76,7 @@ namespace LightCalcRoom.WebUI.Models
         public int Kol { get; set; }
         public int Pwr { get; set; }
         public int Potok { get; set; }
-       // [Required]
-    //    public string Name { get; set; }
-     //   public virtual ICollection<SelectListItem> TblKfSl { get; set; }
-     //   public IEnumerable<SelectListItem> Genres { get; set; }
+      
     }
 
 

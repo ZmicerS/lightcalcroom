@@ -1,0 +1,10 @@
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\LightCalcRoom.DAL.dll.config
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\LightCalcRoom.DAL.dll
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\LightCalcRoom.DAL.pdb
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\EntityFramework.dll
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\EntityFramework.SqlServer.dll
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\EntityFramework.xml
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\bin\Debug\EntityFramework.SqlServer.xml
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\obj\Debug\LightCalcRoom.DAL.csprojResolveAssemblyReference.cache
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\obj\Debug\LightCalcRoom.DAL.dll
+I:\WEB_ASP_MVC\RzmstGitHub2\lightcalcroom\LightCalcRoom.DAL\obj\Debug\LightCalcRoom.DAL.pdb

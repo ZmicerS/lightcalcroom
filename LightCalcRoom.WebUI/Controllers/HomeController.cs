@@ -271,7 +271,7 @@ namespace LightCalcRoom.WebUI.Controllers
                      //
                 }//for
                var vvzn= vkdsvt.TblKf.TblZncs.Where(t => t.TblKfId == ikodtab && t.NmrCl == KdOtrz && t.NmrRw == inmrw).FirstOrDefault();
-                //  var vv = unitOfWork.TblZncRepstr.Get(t => t.TblKfId == ikdtb && t.NmrCl == iotrz && t.NmrRw == inmrw).FirstOrDefault();
+                
                 int ikofisp = -1;
                 double dKlSvt = 0;
                 if (vvzn != null)
@@ -282,15 +282,15 @@ namespace LightCalcRoom.WebUI.Controllers
                 {
                      goto oshb;
                 }
-                // dKlSvt = (dnrmosv * (ddlnpom * dshrpom) * 100) / (ikofisp * ikllmp * iptk * dkfzps);
+                
                 double dchsl = (dnrmosv * (ddlnpom * dshrpom) * 100);
                 int ikllmp = kl;
-               // int  iptk=
+               
                 double dznm = (ikofisp * ikllmp * dsvtptk * dkfzps);
                 if (dznm > 0.0001)
                     dKlSvt = dchsl / dznm;
                 //
-                //  return View();
+                
                 string sklsvt = String.Format("Количество светильников ≈ {0:0.##};    коэффициент использования={1:0.##};  индекс помещения={2:0.##}", dKlSvt, ikofisp, dsmindpm);
                 var data = new Object();
                 data = new {Rez=1, KlSvt = dKlSvt, Sitg = sklsvt };
@@ -300,24 +300,11 @@ namespace LightCalcRoom.WebUI.Controllers
             oshb:
             var dataplh = new { Rez = 0, KlSvt = 0, Sitg = "Неверно введены данные!" };
             return Json(dataplh);
-            //
-            return null;
+           
         }
 
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
 
         protected override void Dispose(bool disposing)
         {
